@@ -1,0 +1,22 @@
+// Pin configuration
+const int ldrPin = A5;       // LDR connected to analog pin A5
+const int outputPin = 3;     // Output pin
+int ldrValue = 0;            // Variable to store LDR reading
+int threshold = 500;         // Adjust this threshold 
+
+void setup() {
+  pinMode(outputPin, OUTPUT);
+  pinMode(ldrPin, INPUT);
+}
+
+void loop() {
+  ldrValue = analogRead(ldrPin);      // Read LDR value
+
+  if (ldrValue < threshold) {
+    digitalWrite(outputPin, HIGH);    // It's dark outside → turn ON bulb
+  } else {
+    digitalWrite(outputPin, LOW);     // It's enough light outside → turn OFF bulb
+  }
+
+  delay(500);   // delay for stability 
+}
